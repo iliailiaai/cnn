@@ -23,22 +23,23 @@ from keras.models import load_model
 
 
 import gdown
-from keras.models import load_model
+
 
 # URL для скачивания файла модели
 url = "https://drive.google.com/uc?id=1_C9mySLYBc6T65wcGDmrnMGA_Jiq4I8t"
-output = "cnn_cifar100_model_67.keras"
+output_file = "cnn_cifar100_model_67.keras"  # Убедитесь, что используете одинаковое имя переменной
 
-
+# Проверка существования файла и его скачивание
 if not os.path.exists(output_file):
     print(f"Файл {output_file} не найден. Скачиваю...")
-    gdown.download(file_url, output_file, quiet=False)
+    gdown.download(url, output_file, quiet=False)
 else:
     print(f"Файл {output_file} уже существует.")
 
 # Загружаем модель
-model = load_model(output)
+model = load_model(output_file)
 print("Модель успешно загружена.")
+
 
 
 fine_labels = [
