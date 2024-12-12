@@ -28,9 +28,9 @@ import threading
 def log_resources():  
     while True:
         mem = psutil.virtual_memory()          # Получаем информацию о памяти
-        cpu = psutil.cpu_percent(interval=0.5)  # Получаем процент использования CPU за 0.5 секунды
+        cpu = psutil.cpu_percent(interval=1)  # Получаем процент использования CPU за 0.5 секунды
         print(f"Memory: {mem.percent}% used, CPU: {cpu}% used")
-        time.sleep(0.5)                        # Ожидаем 0.5 секунды перед следующим измерением
+        time.sleep(10)                        # Ожидаем 0.5 секунды перед следующим измерением
 
 # Запуск потока с мониторингом
 threading.Thread(target=log_resources, daemon=True).start()
@@ -86,21 +86,6 @@ bot = telebot.TeleBot('7943117804:AAFY3_YKcfKAxeV3jZqM9e6RNZLgvBWxyeU')
 
 @bot.message_handler(commands=['start'])
 def start(msg: types.Message):
-
-        # Загружаем файл из Dropbox
-    try:
-        metadata, response = dbx.files_download(folder_path)
-        print(f"Файл {metadata.name} успешно загружен.")
-    
-        # Считываем файл из памяти и загружаем модель
-        file_data = BytesIO(response.content)
-        model = load_model(file_data)
-        print("Модель успешно загружена.")
-    except dropbox.exceptions.ApiError as e:
-        print(f"Ошибка при загрузке файла: {e}")
-    except Exception as e:
-        print(f"Ошибка при загрузке модели: {e}")
-
     bot.send_message(
         chat_id=msg.chat.id,
         text=f"Привет, {msg.from_user.first_name}!\n\nДанный бот содержит ИИ на конволюционных сверточных сетях (CNN), способный распознавать до 100 типов объектов со средней точностью 67%.",
