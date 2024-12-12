@@ -7,7 +7,6 @@ from tensorflow.keras.layers import Dense, Flatten
 from tensorflow.keras.optimizers import Adam
 import os
 import warnings
-from tqdm import tqdm
 import keras
 from keras.layers import Dense, Dropout, LeakyReLU, BatchNormalization
 from keras.utils import to_categorical
