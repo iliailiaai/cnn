@@ -11,7 +11,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Set TensorFlow log level to suppress warnings and info messages
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # 0 = all logs, 1 = filter out INFO, 2 = filter out INFO and WARNING, 3 = ERROR only
+#os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # 0 = all logs, 1 = filter out INFO, 2 = filter out INFO and WARNING, 3 = ERROR only
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
 
@@ -52,13 +52,14 @@ folder_path = "/test/cnn_cifar100_model_67.keras"
 
 # Загружаем файл из Dropbox
 try:
-    metadata, response = dbx.files_download(folder_path)
-    print(f"Файл {metadata.name} успешно загружен.")
+    if model is None:
+        metadata, response = dbx.files_download(folder_path)
+        print(f"Файл {metadata.name} успешно загружен.")
     
-    # Считываем файл из памяти и загружаем модель
-    file_data = BytesIO(response.content)
-    model = load_model(file_data)
-    print("Модель успешно загружена.")
+        # Считываем файл из памяти и загружаем модель
+        file_data = BytesIO(response.content)
+        model = load_model(file_data)
+        print("Модель успешно загружена.")
 except dropbox.exceptions.ApiError as e:
     print(f"Ошибка при загрузке файла: {e}")
 except Exception as e:
