@@ -20,11 +20,21 @@ os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
 import keras
 from keras.models import load_model
-from io import BytesIO
 
 
+import gdown
+from keras.models import load_model
 
+# URL для скачивания файла модели
+url = "https://drive.google.com/uc?id=1_C9mySLYBc6T65wcGDmrnMGA_Jiq4I8t"
+output = "cnn_cifar100_model_67.keras"
 
+# Скачиваем модель
+gdown.download(url, output, quiet=False)
+
+# Загружаем модель
+model = load_model(output)
+print("Модель успешно загружена.")
 
 
 fine_labels = [
