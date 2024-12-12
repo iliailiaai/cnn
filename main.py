@@ -2,26 +2,19 @@
 
 
 
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten
-from tensorflow.keras.optimizers import Adam
+
 import os
 import warnings
 import keras
-from keras.layers import Dense, Dropout, LeakyReLU, BatchNormalization
-from keras.utils import to_categorical
-from tensorflow.keras.layers import AveragePooling2D
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.initializers import HeNormal
-from tensorflow.keras.callbacks import LearningRateScheduler, Callback
-from tensorflow.keras.callbacks import EarlyStopping
+
 # Suppress all Python warnings
 warnings.filterwarnings('ignore')
 
 # Set TensorFlow log level to suppress warnings and info messages
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # 0 = all logs, 1 = filter out INFO, 2 = filter out INFO and WARNING, 3 = ERROR only
-from tensorflow.keras.models import load_model
+os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+
+
 
 
 
@@ -154,4 +147,4 @@ def handle_text(msg: telebot.types.Message):
     bot.send_message(chat_id=msg.chat.id, text="Это текст, отправь изображение для распознавания.")
 
 
-bot.polling(none_stop=True, interval=1)
+bot.polling(none_stop=True)
