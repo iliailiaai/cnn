@@ -153,4 +153,14 @@ def handle_image(msg: telebot.types.Message):
 def handle_text(msg: telebot.types.Message):
     bot.send_message(chat_id=msg.chat.id, text="Это текст, отправь изображение для распознавания.")
 
-bot.polling(none_stop=True, interval=1)
+#bot.polling(none_stop=True, interval=1)
+
+import logging          
+logging.basicConfig(level=logging.ERROR)
+              
+
+try:
+    bot.infinity_polling(interval=1) 
+
+except Exception as e:
+    logging.error(f"Глобальная ошибка в боте: {e}")
