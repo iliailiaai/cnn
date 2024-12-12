@@ -18,56 +18,11 @@ warnings.filterwarnings('ignore')
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
 
-
-
-import dropbox
-
-
 import keras
 from keras.models import load_model
-
-    
-#from keras.models import load_model
 from io import BytesIO
 
-# Ваши токены и ключи
-app_key = 'dsx3dqarmepo90n'
-app_secret = 'xjpp3t07ngawhnn'
-refresh_token = 'pkuWKOE7o1EAAAAAAAAAASmPubAWni0Rke_ttA-mDasWr-E92LQ-M6MoScoeci8L'
 
-# Создаем клиент Dropbox с токеном обновления
-dbx = dropbox.Dropbox(
-    app_key=app_key,
-    app_secret=app_secret,
-    oauth2_refresh_token=refresh_token
-)
-
-# Проверяем доступ к аккаунту
-try:
-    account_info = dbx.users_get_current_account()
-    print(account_info)
-except dropbox.exceptions.AuthError as e:
-    print(f"Ошибка аутентификации: {e}")
-    exit()
-
-# Путь к файлу на Dropbox
-folder_path = "/test/cnn_cifar100_model_67.keras"
-logging.basicConfig(level=logging.ERROR)
-
-"""
-# Загружаем файл из Dropbox
-try:
-    metadata, response = dbx.files_download(folder_path)
-    print(f"Файл {metadata.name} успешно загружен.")
-    
-    # Считываем файл из памяти и загружаем модель
-    file_data = BytesIO(response.content)
-    model = load_model(file_data)
-    print("Модель успешно загружена.")
-except dropbox.exceptions.ApiError as e:
-    print(f"Ошибка при загрузке файла: {e}")
-except Exception as e:
-    print(f"Ошибка при загрузке модели: {e}")"""
 
 
 
