@@ -4,3 +4,4 @@ gunicorn
 pillow
 tensorflow-cpu==2.17.1
 gdown
+psutil
