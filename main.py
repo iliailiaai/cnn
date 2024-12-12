@@ -13,7 +13,7 @@ warnings.filterwarnings('ignore')
 # Set TensorFlow log level to suppress warnings and info messages
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # 0 = all logs, 1 = filter out INFO, 2 = filter out INFO and WARNING, 3 = ERROR only
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
-export TF_ENABLE_ONEDNN_OPTS=0
+
 
 
 
