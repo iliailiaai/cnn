@@ -3,3 +3,4 @@ pytelegrambotapi
 gunicorn
 pillow
 tensorflow-cpu
+gdown
