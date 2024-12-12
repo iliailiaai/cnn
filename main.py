@@ -20,7 +20,7 @@ from tensorflow.keras.callbacks import EarlyStopping
 warnings.filterwarnings('ignore')
 
 # Set TensorFlow log level to suppress warnings and info messages
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # 0 = all logs, 1 = filter out INFO, 2 = filter out INFO and WARNING, 3 = ERROR only
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # 0 = all logs, 1 = filter out INFO, 2 = filter out INFO and WARNING, 3 = ERROR only
 from tensorflow.keras.models import load_model
 
 
@@ -153,14 +153,5 @@ def handle_image(msg: telebot.types.Message):
 def handle_text(msg: telebot.types.Message):
     bot.send_message(chat_id=msg.chat.id, text="Это текст, отправь изображение для распознавания.")
 
-#bot.polling(none_stop=True, interval=1)
 
-import logging          
-logging.basicConfig(level=logging.ERROR)
-              
-
-try:
-    bot.infinity_polling(interval=1) 
-
-except Exception as e:
-    logging.error(f"Глобальная ошибка в боте: {e}")
+bot.polling(none_stop=True, interval=1)
