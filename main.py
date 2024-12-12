@@ -50,6 +50,8 @@ except dropbox.exceptions.AuthError as e:
 # Путь к файлу на Dropbox
 folder_path = "/test/cnn_cifar100_model_67.keras"
 
+model = None
+
 # Загружаем файл из Dropbox
 try:
     if model is None:
