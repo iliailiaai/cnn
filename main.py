@@ -21,6 +21,20 @@ warnings.filterwarnings('ignore')
 #os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # 0 = all logs, 1 = filter out INFO, 2 = filter out INFO and WARNING, 3 = ERROR only
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
+import psutil
+import time
+import threading
+
+def log_resources():
+    while True:
+        mem = psutil.virtual_memory()          # Получаем информацию о памяти
+        cpu = psutil.cpu_percent(interval=0.5)  # Получаем процент использования CPU за 0.5 секунды
+        print(f"Memory: {mem.percent}% used, CPU: {cpu}% used")
+        time.sleep(0.5)                        # Ожидаем 0.5 секунды перед следующим измерением
+
+# Запуск потока с мониторингом
+threading.Thread(target=log_resources, daemon=True).start()
+
 
 
 from tensorflow.keras.models import load_model
