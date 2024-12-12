@@ -37,7 +37,7 @@ else:
     print(f"Файл {output_file} уже существует.")
 
 # Загружаем модель
-model = load_model(output_file)
+#model = load_model(output_file)
 print("Модель успешно загружена.")
 
 
