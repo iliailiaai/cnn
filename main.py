@@ -54,40 +54,23 @@ except dropbox.exceptions.AuthError as e:
 folder_path = "/test/cnn_cifar100_model_67.keras"
 logging.basicConfig(level=logging.ERROR)
 
-
-"""# Загружаем файл из Dropbox
+"""
+# Загружаем файл из Dropbox
 try:
-    if model is None:
-        metadata, response = dbx.files_download(folder_path)
-        print(f"Файл {metadata.name} успешно загружен.")
+    metadata, response = dbx.files_download(folder_path)
+    print(f"Файл {metadata.name} успешно загружен.")
     
-        # Считываем файл из памяти и загружаем модель
-        file_data = BytesIO(response.content)
-        model = load_model(file_data)
-        print("Модель успешно загружена.")
+    # Считываем файл из памяти и загружаем модель
+    file_data = BytesIO(response.content)
+    model = load_model(file_data)
+    print("Модель успешно загружена.")
 except dropbox.exceptions.ApiError as e:
     print(f"Ошибка при загрузке файла: {e}")
 except Exception as e:
     print(f"Ошибка при загрузке модели: {e}")"""
 
-if os.path.exists("/tmp/cnn_cifar100_model_67.keras"):
-    model = load_model("/tmp/cnn_cifar100_model_67.keras")
-    print("Модель успешно загружена из локального хранилища.")
-else:
-    try:
-        metadata, response = dbx.files_download(folder_path)
-        file_data = BytesIO(response.content)
-        model = load_model(file_data)
-        print("Модель успешно загружена из Dropbox.")
-        # Сохраняем локально
-        model.save("/tmp/cnn_cifar100_model_67.keras")
-    except Exception as e:
-        logging.error(f"Ошибка при загрузке модели: {e}")
-        sys.exit(1)
 
 
-    
-    
 
 fine_labels = [
     "яблоко", "аквариумная рыбка", "младенец", "медведь", "бобр", "кровать", "пчела", "жук", "велосипед", "бутылка",
@@ -115,6 +98,20 @@ bot = telebot.TeleBot('7943117804:AAFY3_YKcfKAxeV3jZqM9e6RNZLgvBWxyeU')
 
 @bot.message_handler(commands=['start'])
 def start(msg: types.Message):
+
+        # Загружаем файл из Dropbox
+    try:
+        metadata, response = dbx.files_download(folder_path)
+        print(f"Файл {metadata.name} успешно загружен.")
+    
+        # Считываем файл из памяти и загружаем модель
+        file_data = BytesIO(response.content)
+        model = load_model(file_data)
+        print("Модель успешно загружена.")
+    except dropbox.exceptions.ApiError as e:
+        print(f"Ошибка при загрузке файла: {e}")
+    except Exception as e:
+        print(f"Ошибка при загрузке модели: {e}")
 
     bot.send_message(
         chat_id=msg.chat.id,
