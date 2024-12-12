@@ -19,12 +19,10 @@ os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
 import dropbox
 
-try:
-    import keras
-    from keras.models import load_model
-except Exception as e:
-    # Логируем ошибку
-    logging.error(f"Ошибка в bot.polling: {e}")
+
+import keras
+from keras.models import load_model
+
     
 #from keras.models import load_model
 from io import BytesIO
