@@ -23,6 +23,8 @@ os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
 import psutil
 import time
+
+"""
 import threading
 
 def log_resources():  
@@ -33,7 +35,7 @@ def log_resources():
         time.sleep(10)                        # Ожидаем 0.5 секунды перед следующим измерением
 
 # Запуск потока с мониторингом
-threading.Thread(target=log_resources, daemon=True).start()
+threading.Thread(target=log_resources, daemon=True).start()"""
 
 
 
