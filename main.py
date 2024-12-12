@@ -25,7 +25,7 @@ import psutil
 import time
 import threading
 
-def log_resources():
+def log_resources():  
     while True:
         mem = psutil.virtual_memory()          # Получаем информацию о памяти
         cpu = psutil.cpu_percent(interval=0.5)  # Получаем процент использования CPU за 0.5 секунды
