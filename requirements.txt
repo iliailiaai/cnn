@@ -4,4 +4,4 @@ gunicorn
 dropbox
 requests
 pillow
-tensorflow-cpu
+keras
