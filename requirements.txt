@@ -1,6 +1,7 @@
 numpy
 pytelegrambotapi
 gunicorn
-openai
 dropbox
 requests
+pillow
+tensorflow
