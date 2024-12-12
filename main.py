@@ -10,6 +10,10 @@ import os
 import warnings
 #import keras
 
+import tensorflow as tf
+print(tf.__version__)
+
+
 # Suppress all Python warnings
 warnings.filterwarnings('ignore')
 
@@ -18,8 +22,8 @@ warnings.filterwarnings('ignore')
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
 
-import keras
-from keras.models import load_model
+
+from tensorflow.keras.models import load_model
 
 
 import gdown
