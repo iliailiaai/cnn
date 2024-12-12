@@ -1,6 +1,5 @@
 numpy
 pytelegrambotapi
 gunicorn
-requests
 pillow
 tensorflow-cpu
