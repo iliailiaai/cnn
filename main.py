@@ -2,23 +2,31 @@
 
 
 
-
+import logging
 import os
 import warnings
-import keras
+#import keras
 
 # Suppress all Python warnings
 warnings.filterwarnings('ignore')
 
 # Set TensorFlow log level to suppress warnings and info messages
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # 0 = all logs, 1 = filter out INFO, 2 = filter out INFO and WARNING, 3 = ERROR only
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # 0 = all logs, 1 = filter out INFO, 2 = filter out INFO and WARNING, 3 = ERROR only
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
 
 
 
 import dropbox
-from keras.models import load_model
+
+try:
+    import keras
+    from keras.models import load_model
+except Exception as e:
+    # Логируем ошибку
+    logging.error(f"Ошибка в bot.polling: {e}")
+    
+#from keras.models import load_model
 from io import BytesIO
 
 # Ваши токены и ключи
@@ -145,4 +153,12 @@ def handle_text(msg: telebot.types.Message):
     bot.send_message(chat_id=msg.chat.id, text="Это текст, отправь изображение для распознавания.")
 
 
-bot.polling(none_stop=True)
+#bot.polling(none_stop=True)
+
+# Основной цикл с обработкой ошибок
+while True:
+    try:
+        bot.polling(none_stop=True, interval=1, timeout=20)
+    except Exception as e:
+        # Логируем ошибку
+        logging.error(f"Ошибка в bot.polling: {e}")
