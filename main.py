@@ -83,8 +83,8 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 # Создаем экземпляр бота
 
-#bot = telebot.TeleBot('7552516692:AAGS_5cgcQS3whi3aJ9sb3RAiZ-hhLTo5Hc')
-bot = telebot.TeleBot('7943117804:AAFY3_YKcfKAxeV3jZqM9e6RNZLgvBWxyeU')
+bot = telebot.TeleBot('7552516692:AAGS_5cgcQS3whi3aJ9sb3RAiZ-hhLTo5Hc')
+#bot = telebot.TeleBot('7943117804:AAFY3_YKcfKAxeV3jZqM9e6RNZLgvBWxyeU')
 
 @bot.message_handler(commands=['start'])
 def start(msg: types.Message):
