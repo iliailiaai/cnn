@@ -3,6 +3,9 @@
 
 
 import logging
+import sys
+
+
 import os
 import warnings
 #import keras
@@ -49,10 +52,10 @@ except dropbox.exceptions.AuthError as e:
 
 # Путь к файлу на Dropbox
 folder_path = "/test/cnn_cifar100_model_67.keras"
+logging.basicConfig(level=logging.ERROR)
 
-model = None
 
-# Загружаем файл из Dropbox
+"""# Загружаем файл из Dropbox
 try:
     if model is None:
         metadata, response = dbx.files_download(folder_path)
@@ -65,7 +68,23 @@ try:
 except dropbox.exceptions.ApiError as e:
     print(f"Ошибка при загрузке файла: {e}")
 except Exception as e:
-    print(f"Ошибка при загрузке модели: {e}")
+    print(f"Ошибка при загрузке модели: {e}")"""
+
+if os.path.exists("/tmp/cnn_cifar100_model_67.keras"):
+    model = load_model("/tmp/cnn_cifar100_model_67.keras")
+    print("Модель успешно загружена из локального хранилища.")
+else:
+    try:
+        metadata, response = dbx.files_download(folder_path)
+        file_data = BytesIO(response.content)
+        model = load_model(file_data)
+        print("Модель успешно загружена из Dropbox.")
+        # Сохраняем локально
+        model.save("/tmp/cnn_cifar100_model_67.keras")
+    except Exception as e:
+        logging.error(f"Ошибка при загрузке модели: {e}")
+        sys.exit(1)
+
 
     
     
