@@ -90,7 +90,7 @@ bot = telebot.TeleBot('7552516692:AAGS_5cgcQS3whi3aJ9sb3RAiZ-hhLTo5Hc')
 def start(msg: types.Message):
     bot.send_message(
         chat_id=msg.chat.id,
-        text=f"Привет, {msg.from_user.first_name}!\n\nДанный бот содержит ИИ на конволюционных сверточных сетях (CNN), способный распознавать до 100 типов объектов со средней точностью 67%.",
+        text=f"Привет, {msg.from_user.first_name}!\n\nДанный бот содержит ИИ на конволюционной нейронной сети (CNN), способный распознавать до 100 типов объектов со средней точностью 67%.",
     )
 
     bot.send_message(
